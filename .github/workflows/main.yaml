@@ -2,6 +2,7 @@ name: CI
 on:
   push:
     branches: [ master, alma ]
+  workflow_dispatch:
 env:
   STORAGE_ACCOUNT_NAME: ${{ secrets.STORAGE_ACCOUNT_NAME }}
   STORAGE_CONTAINER_NAME: vhd

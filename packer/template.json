@@ -14,7 +14,7 @@
         "accelerator": "kvm",
         "http_directory": "/root/config",
         "ssh_username": "root",
-        "ssh_password": "password",
+        "ssh_password": "badPassword1.",
         "ssh_timeout": "25m",
         "vm_name": "baked",
         "cpus":4,

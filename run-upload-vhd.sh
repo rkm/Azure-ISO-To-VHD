@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -exuo pipefail
 
 RESOURCE_GROUP=$1
 VM_NAME=$2
@@ -34,7 +36,7 @@ IMAGE_URL=$(az storage blob url \
                     --auth-mode key \
                     --account-key $KEY \
                     --name $IMAGE_NAME \
-                    --account-name $STORAGE_ACCOUNT )                    
+                    --account-name $STORAGE_ACCOUNT )
 
 
 #run upload vhd script on builer vm

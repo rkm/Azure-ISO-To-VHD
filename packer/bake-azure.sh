@@ -4,31 +4,21 @@
 
 set -euxo pipefail
 
-cat >> /etc/sysconfig/network  <<EOF
- NETWORKING=yes
- HOSTNAME=localhost.localdomain
-EOF
+systemctl enable NetworkManager
+nmcli con mod eth0 connection.autoconnect yes ipv4.method auto
 
-cat > /etc/sysconfig/network-scripts/ifcfg-eth0 <<EOF
- DEVICE=eth0
- ONBOOT=yes
- BOOTPROTO=dhcp
- TYPE=Ethernet
- USERCTL=no
- PEERDNS=yes
- IPV6INIT=no
- PERSISTENT_DHCLIENT=yes
- NM_CONTROLLED=yes
-EOF
 
-ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
+grub2-editenv - unset kernelopts
 
-sed -i 's/GRUB_CMDLINE_LINUX=".*"/GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0 " /' /etc/default/grub
+sed -i 's/GRUB_CMDLINE_LINUX=".*"/GRUB_CMDLINE_LINUX="rootdelay=300 console=tty1 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 earlyprintk=ttyS0 net.ifnames=0 rhgb quiet crashkernel=auto"/' /etc/default/grub
+sed -i 's/GRUB_TERMINAL_OUTPUT=".*"/GRUB_TERMINAL_OUTPUT="serial console"/' /etc/default/grub
+sed -i 's/GRUB_SERIAL_COMMAND=".*"/GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"/' /etc/default/grub
 
 grub2-mkconfig -o /boot/grub2/grub.cfg
+# eeh
+grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
 
-echo 'add_drivers+=" hv_vmbus hv_netvsc hv_storvsc "' >> /etc/dracut.conf
-dracut -f -v
+echo "ClientAliveInterval 180" >> /etc/ssh/sshd_config
 
 yum clean all
 yum -y update

@@ -36,12 +36,12 @@ yum install -y WALinuxAgent
 systemctl enable waagent
 
 # cloud-init
+
 yum install -y cloud-init cloud-utils-growpart gdisk hyperv-daemons
 
 # Configure waagent for cloud-init
 sed -i 's/Provisioning.UseCloudInit=n/Provisioning.UseCloudInit=y/g' /etc/waagent.conf
 sed -i 's/Provisioning.Enabled=y/Provisioning.Enabled=n/g' /etc/waagent.conf
-
 
 echo "Adding mounts and disk_setup to init stage"
 sed -i '/ - mounts/d' /etc/cloud/cloud.cfg
@@ -74,3 +74,8 @@ EOF
 
 sed -i 's/ResourceDisk.Format=y/ResourceDisk.Format=n/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.EnableSwap=y/ResourceDisk.EnableSwap=n/g' /etc/waagent.conf
+
+# debug
+cat /etc/cloud/cloud.cfg
+ls -l /etc/cloud/cloud.cfg.d
+cat /etc/cloud/cloud.cfg.d/*

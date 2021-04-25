@@ -17,7 +17,8 @@ cat > /etc/sysconfig/network-scripts/ifcfg-eth0 <<EOF
  USERCTL=no
  PEERDNS=yes
  IPV6INIT=no
- NM_CONTROLLED=no
+ PERSISTENT_DHCLIENT=yes
+ NM_CONTROLLED=yes
 EOF
 
 ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules

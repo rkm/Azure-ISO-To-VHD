@@ -31,7 +31,7 @@ echo 'add_drivers+=" hv_vmbus hv_netvsc hv_storvsc "' >> /etc/dracut.conf
 sudo yum clean all
 sudo yum -y update
 
-yum install -y python-pyasn1 WALinuxAgent
+yum install -y WALinuxAgent
 
 systemctl enable waagent
 

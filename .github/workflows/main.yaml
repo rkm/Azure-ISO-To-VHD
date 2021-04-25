@@ -6,7 +6,7 @@ on:
 env:
   STORAGE_ACCOUNT_NAME: ${{ secrets.STORAGE_ACCOUNT_NAME }}
   STORAGE_CONTAINER_NAME: vhd
-  BASE_IMAGE_NAME: baked-centos-7
+  BASE_IMAGE_NAME: baked-centos-8
   REGION: uksouth
   RESOURCE_GROUP: vm-build
   VM_USERNAME: ${{ secrets.VM_USERNAME }}

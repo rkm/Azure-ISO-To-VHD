@@ -29,11 +29,11 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 echo 'add_drivers+=" hv_vmbus hv_netvsc hv_storvsc "' >> /etc/dracut.conf
 dracut -f -v
 
-sudo yum clean all
-sudo yum -y update
+yum clean all
+yum -y update
 
-sudo yum install WALinuxAgent
-sudo systemctl enable waagent
+yum install -y WALinuxAgent
+systemctl enable waagent
 
 # cloud-init
 yum install -y cloud-init cloud-utils-growpart gdisk hyperv-daemons

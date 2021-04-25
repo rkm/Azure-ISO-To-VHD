@@ -32,7 +32,7 @@ dracut -f -v
 yum clean all
 yum -y update
 
-yum install -y WALinuxAgent
+yum install -y python3-pyasn1 WALinuxAgent
 systemctl enable waagent
 
 # cloud-init

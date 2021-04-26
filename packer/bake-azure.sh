@@ -7,7 +7,6 @@ set -euxo pipefail
 systemctl enable NetworkManager
 nmcli con mod eth0 connection.autoconnect yes ipv4.method auto
 
-
 grub2-editenv - unset kernelopts
 
 sed -i 's/GRUB_CMDLINE_LINUX=".*"/GRUB_CMDLINE_LINUX="rootdelay=300 console=tty1 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 earlyprintk=ttyS0 net.ifnames=0 rhgb quiet crashkernel=auto"/' /etc/default/grub

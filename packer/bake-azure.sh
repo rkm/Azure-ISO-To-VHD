@@ -12,6 +12,9 @@ sed -i 's/GRUB_SERIAL_COMMAND=".*"/GRUB_SERIAL_COMMAND="serial --speed=115200 --
 
 grub2-mkconfig -o /boot/grub2/grub.cfg
 
+echo 'add_drivers+=" hv_vmbus hv_netvsc hv_storvsc "' >> /etc/dracut.conf
+dracut -f -v
+
 echo "ClientAliveInterval 180" >> /etc/ssh/sshd_config
 
 yum clean all

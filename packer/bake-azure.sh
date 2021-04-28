@@ -4,9 +4,6 @@
 
 set -euxo pipefail
 
-systemctl enable NetworkManager
-nmcli con mod eth0 connection.autoconnect yes ipv4.method auto
-
 grub2-editenv - unset kernelopts
 
 sed -i 's/GRUB_CMDLINE_LINUX=".*"/GRUB_CMDLINE_LINUX="rootdelay=300 console=tty1 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 earlyprintk=ttyS0 net.ifnames=0 rhgb quiet crashkernel=auto"/' /etc/default/grub
@@ -14,8 +11,6 @@ sed -i 's/GRUB_TERMINAL_OUTPUT=".*"/GRUB_TERMINAL_OUTPUT="serial console"/' /etc
 sed -i 's/GRUB_SERIAL_COMMAND=".*"/GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"/' /etc/default/grub
 
 grub2-mkconfig -o /boot/grub2/grub.cfg
-# eeh
-grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
 
 echo "ClientAliveInterval 180" >> /etc/ssh/sshd_config
 

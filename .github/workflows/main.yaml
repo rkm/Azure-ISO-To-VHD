@@ -6,7 +6,7 @@ on:
 env:
   STORAGE_ACCOUNT_NAME: ${{ secrets.STORAGE_ACCOUNT_NAME }}
   STORAGE_CONTAINER_NAME: vhd
-  BASE_IMAGE_NAME: baked-centos-8
+  BASE_IMAGE_NAME: baked-rocky-8
   REGION: uksouth
   RESOURCE_GROUP: vm-build
   VM_USERNAME: ${{ secrets.VM_USERNAME }}
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: vmbuild
     env:
-      TEST_VM_NAME: test-vm
+      TEST_VM_NAME: rocky-test
       TEST_VM_SIZE: Standard_D2s_v3
     steps:
     - uses: actions/checkout@v2

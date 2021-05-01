@@ -3,8 +3,8 @@
     [
       {
         "type": "qemu",
-        "iso_url": "http://mirror.mhd.uk.as44574.net/mirror.centos.org/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-minimal.iso",
-        "iso_checksum": "191daa949a021733bbc19ae42dd1280b30d4ded7e316733461a2efb4463fbfed",
+        "iso_url": "http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-dvd1.iso",
+        "iso_checksum": "4be83f5edf28209ce5caa06995c1c3fc5112d0d260b9e8c1cc2fecd384abcee0",
         "iso_checksum_type": "sha256",
         "output_directory": "disk",
         "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
